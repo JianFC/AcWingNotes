@@ -17,36 +17,28 @@
 >
 > 具体实现
 >
-> ```C++
-> #include <iostream>
-> #include <algorithm>
+> ```Java
+> static int N = 100010;
 > 
-> using namespace std;
+> static int n;
+> static int[] t = new int[N];
 > 
-> typedef long long LL;
+> public static void main(String[] args) throws Exception {
+>     ins.nextToken(); n = (int)ins.nval;
 > 
-> const int N = 100010;
+>     for (int i=0; i<n; i++) { ins.nextToken(); t[i] = (int)ins.nval; }
 > 
-> int n;
-> int t[N];
+>     Arrays.sort(t, 0, n);   //将t[i]从小到大排序
 > 
-> int main(void) {
->     scanf("%d", &n);
-> 
->     for (int i=0; i<n; i++) scanf("%d", &t[i]);
-> 
->     sort(t, t+n);   //将打水时间从小到大排序
-> 
->     LL res = 0;
-> 
+>     long res = 0;
 >     for (int i=0; i<n; i++) res += t[i]*(n-i-1);
 > 
->     cout << res << endl;
+>     out.println(res);
 > 
->     return 0;
+>     out.flush();
 > }
 > ```
->
+> 
 > 
 
 
@@ -80,37 +72,29 @@
 >
 > 具体实现
 >
-> ``` C++
-> #include <iostream>
-> #include <algorithm>
+> ``` Java
+> static int N = 100010;
 > 
-> using namespace std;
+> static int n;
+> static int[] a = new int[N];
 > 
-> typedef long long LL;
+> public static void main(String[] args) throws Exception {
+>     ins.nextToken(); n = (int)ins.nval;
 > 
-> const int N = 100010;
+>     for (int i=0; i<n; i++) { ins.nextToken(); a[i] = (int)ins.nval; }
 > 
-> int n;
-> int a[N];
+>     Arrays.sort(a, 0, n);   //从小到大排序，用于求中位数
 > 
-> int main(void) {
->     scanf("%d", &n);
+>     long res = 0;
+>     for (int i=0; i<n; i++) res += Math.abs(a[i]-a[(n-1)/2]);
 >     
->     for (int i=0; i<n; i++) scanf("%d", &a[i]);
+>     out.println(res);
 >     
->     sort(a, a+n);   //从小到大排序，用于求出中位数
->     
->     LL res = 0;
->     
->     for (int i=0; i<n; i++) res += abs(a[i]-a[(n-1)/2]);
->     
->     cout << res << endl;
->     
->     return 0;
-> } 
+>     out.flush();
+> }
 > ```
->
->  
+>     
+> 
 
 
 
@@ -132,40 +116,41 @@
 >
 > 具体实现
 >
-> ```c++
-> #include <iostream>
-> #include <algorithm>
+> ```Java
+> static int N = 500010;
 > 
-> using namespace std;
+> static int n;
+> static Cow[] cows = new Cow[N];
 > 
-> typedef pair<int, int> PII;
+> public static void main(String[] args) throws Exception {
+>     ins.nextToken(); n = (int)ins.nval;
 > 
-> const int N = 50010;
-> 
-> int n;
-> PII cow[N];
-> 
-> int main(void) {
->     scanf("%d", &n);
->     
 >     for (int i=0; i<n; i++) {
->         int w, s;
->         scanf("%d%d", &w, &s);
->         cow[i] = {w+s, w};
+>         ins.nextToken(); int w = (int)ins.nval;
+>         ins.nextToken(); int s = (int)ins.nval;
+>         cows[i] = new Cow(w+s, w);
 >     }
->     
->     sort(cow, cow+n);   //按照w+s从小到大排序
->     
->     int res = -2e9, sum = 0;    //某头牛上面牛的重量之和
+> 
+>     //按w+s从小到大排序
+>     Arrays.sort(cows, 0, n, (o1, o2) -> (o1.l-o2.l));
+> 
+>     long res = (int)-2e9, sum = 0;
 >     for (int i=0; i<n; i++) {
->         int w = cow[i].second, s = cow[i].first-w;
->         res = max(res, sum-s);
+>         int s = cows[i].l-cows[i].r, w = cows[i].r;
+>         res = Math.max(res, sum-s);
 >         sum += w;
->     } 
->     
->     cout << res << endl;
->     
->     return 0;
+>     }
+> 
+>     out.println(res);
+> 
+>     out.flush();
+> }
+> 
+> static class Cow {
+>     int l, r;
+>     Cow(int ll, int rr) {
+>         l = ll; r = rr;
+>     }
 > }
 > ```
 >
