@@ -55,32 +55,32 @@
 >
 >   ```C++
 >   #include <iostream>
->       
+>         
 >   using namespace std;
->       
+>         
 >   const int N = 1e5+10;
->       
+>         
 >   int a[N], s[N], n;
 >   int res;
->       
+>         
 >   int main(void) {
 >       scanf("%d", &n);
->           
+>             
 >       for (int i=0; i<n; i++) scanf("%d", &a[i]);
->           
+>             
 >       for (int i=0, j=0; i<n; i++) {
 >           s[a[i]]++;
->               
+>                 
 >           while (j<=i && s[a[i]]>1) {
 >               s[a[j]]--;
 >               j++;
 >           }
->               
+>                 
 >           res = max(res, i-j+1);
 >       }
->           
+>             
 >       cout << res;
->           
+>             
 >       return 0;
 >   }
 >   ```
@@ -125,27 +125,27 @@
 >
 >     ```C++
 >     #include <iostream>
->             
+>                 
 >     using namespace std;
->             
+>                 
 >     int lowbit(int x) {
 >         return x & -x;
 >     }
->             
+>                 
 >     int main(void) {
 >         int n;
 >         scanf("%d", &n);
->                 
+>                     
 >         while (n--) {
 >             int x;
 >             scanf("%d", &x);
->                     
+>                         
 >             int res = 0;
 >             while (x) x -= lowbit(x), res++;
->                     
+>                         
 >             printf("%d ", res);
 >         }
->                 
+>                     
 >         return 0;
 >     }
 >     ```
@@ -166,29 +166,29 @@
 >   #include <iostream>
 >   #include <vector>
 >   #include <algorithm>
->       
+>         
 >   using namespace std;
->       
+>         
 >   typedef pair<int, int> PII;
->       
+>         
 >   const int N = 300010;
->       
+>         
 >   int n, m;
 >   int a[N], s[N];
->       
+>         
 >   vector<int> all;
 >   vector<PII> add, query;
->       
+>         
 >   //去重函数
 >   vector<int>::iterator unique(vector<int> &a) {
 >       int j = 0;
 >       for (int i=0; i<a.size(); i++) 
 >           if (!i || a[i]!=a[i-1])
 >               a[j++] = a[i];
->           
+>             
 >       return a.begin()+j;
 >   }
->       
+>         
 >   //二分
 >   int find(int x) {
 >       int l = 0, r = all.size()-1;
@@ -197,46 +197,46 @@
 >           if (all[mid] >= x) r = mid;
 >           else l = mid+1;
 >       }
->           
+>             
 >       return r+1;
 >   }
->       
+>         
 >   int main(void) {
 >       scanf("%d%d", &n, &m);
->           
+>             
 >       while (n--) {
 >           int x, c;
 >           scanf("%d%d", &x, &c);
 >           add.push_back({x, c});
 >           all.push_back(x);
 >       }
->           
+>             
 >       while (m--) {
 >           int l, r;
 >           scanf("%d%d", &l, &r);
 >           query.push_back({l, r});
 >           all.push_back(l), all.push_back(r);
 >       }
->           
+>             
 >       sort(all.begin(), all.end());
 >       // all.erase(unique(all.begin(), all.end()), all.end());
 >       all.erase(unique(all), all.end());
->           
+>             
 >       //处理插入
 >       for (auto item: add) {
 >           int x = find(item.first);
 >           a[x] += item.second;
 >       }
->           
+>             
 >       //预处理前缀和
 >       for (int i=1; i<=all.size(); i++) s[i] = s[i-1]+a[i];
->           
+>             
 >       //处理查询
 >       for (auto item: query) {
 >           int l = find(item.first), r = find(item.second);
 >           printf("%d\n", s[r]-s[l-1]);
 >       }
->       
+>         
 >       return 0;
 >   }
 >   ```
@@ -269,21 +269,21 @@
 >   #include <iostream>
 >   #include <vector>
 >   #include <algorithm>
->     
+>       
 >   using namespace std;
->     
+>       
 >   typedef pair<int, int> PII;
->     
+>       
 >   const int N = 100010;
->     
+>       
 >   int n;
 >   vector<PII> segs;
->     
+>       
 >   void merge(vector<PII> &segs) {
 >       vector<PII> res;
->         
+>           
 >       sort(segs.begin(), segs.end());
->         
+>           
 >       int st = -2e9, ed = -2e9;
 >       for (auto seg: segs) 
 >           if (ed < seg.first) {
@@ -291,25 +291,25 @@
 >               st = seg.first, ed = seg.second;
 >           }
 >           else ed = max(ed, seg.second);
->         
+>           
 >       if (st != -2e9) res.push_back({st, ed});
->         
+>           
 >       segs = res;
 >   }
->     
+>       
 >   int main(void) {
 >       scanf("%d", &n);
->         
+>           
 >       for (int i=0; i<n; i++) {
 >           int l, r;
 >           scanf("%d%d", &l, &r);
 >           segs.push_back({l, r});
 >       }
->         
+>           
 >       merge(segs);
->         
+>           
 >       cout << segs.size();
->         
+>           
 >       return 0;
 >   }
 >   ```

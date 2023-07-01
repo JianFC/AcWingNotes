@@ -22,14 +22,14 @@
 >     else
 >         for (int i=2; i<=x/i; i++)
 >             if (x % i == 0) return false;
->         
+> 
 >     return true;
 > }
->     
+> 
 > 
 > public static void main(String[] args) throws Exception {
 >     ins.nextToken(); int n = (int)ins.nval;
->         
+> 
 >     while (n-- > 0) {
 >         ins.nextToken(); int a = (int)ins.nval;
 >         out.println((isPrime(a)? "Yes": "No"));
@@ -38,22 +38,22 @@
 >     out.flush();
 > }
 > ```
+>
 > 
->         
-> 
+>
 > **分解质因数**
-> 
->    * 试除法
-> 
->  方法：从小到大枚举所有数
-> 
->  性质：对于一个数x，x中最多只包含一个大于sqrt(x)的质因子，以此优化时间复杂度
-> 
->  时间复杂度：O(logn)~O(sqrt(n))
-> 
->* e2：分解质因数
-> 
->```Java
+>
+> * 试除法
+>
+>   方法：从小到大枚举所有数
+>
+>   性质：对于一个数x，x中最多只包含一个大于sqrt(x)的质因子，以此优化时间复杂度
+>
+>   时间复杂度：O(logn)~O(sqrt(n))
+>
+> * e2：分解质因数
+>
+> ```Java
 > static void divide(int x) {
 >     for (int i=2; i<=x/i; i++)
 >         if (x % i == 0) {
@@ -80,27 +80,27 @@
 >     out.flush();
 > }
 > ```
+>
 > 
-> 
-> 
+>
 > **筛质数**
-> 
+>
 > 朴素筛法
-> 
+>
 > * 思想：从2往后一直将所有数的倍数全部删掉
-> 
+>
 > * 时间复杂度计算：调和级数
-> 
+>
 > ```java
 > static int N = 1000010;
 > 
->static int n;
+> static int n;
 > static int[] primes = new int[N];
->static int cnt;
+> static int cnt;
 > static boolean[] st = new boolean[N];
->
+> 
 > // 朴素筛法，时间复杂度O(nlnn)
->static void getPrimes(int n) {
+> static void getPrimes(int n) {
 >     for (int i=2; i<=n; i++) {
 >        if (!st[i]) primes[cnt++] = i;
 > 
@@ -119,13 +119,13 @@
 >     out.flush();
 > }
 > ```
-> 
+>
 >   **埃氏筛法**
-> 
+>
 > * 质数定理：1~n中有n/lnn个质数
-> 
+>
 > * 时间复杂度：O(nloglogn)，基本和O(n)一个级别
-> 
+>
 > ```java
 > static int N = 1000010;
 > 
@@ -135,7 +135,7 @@
 > static boolean[] st = new boolean[N];
 > 
 > // 埃式筛法，时间复杂度O(nloglogn)
->static void getPrimes(int n) {
+> static void getPrimes(int n) {
 >     for (int i=2; i<=n; i++) {
 >         if (!st[i]) {
 >             primes[cnt++] = i;
@@ -145,25 +145,25 @@
 >     }
 > }
 > ```
-> 
+>
 > **线性筛法**
-> 
+>
 > 正确性证明：
-> 
+>
 > * 每一个数x，只会被其最小质因子筛掉
-> 
+>
 > ```C++
-> 从小到大枚举每一个质数
+> //从小到大枚举每一个质数
 > 1. i % p[j] == 0;	//p[j]一定是i的最小质因子，且p[j]也一定是p[j]*i的最小质因子
 > 2. i % p[j] != 0;	//p[j]一定小于i的所有质因子，所以p[j]也一定是p[j]*i的最小质因子
 > ```
-> 
->* 任意一个合数x，一定会被其最小质因数筛掉。	
-> 
-> 对于一个合数x，假设pj是x的最小质因子，当i枚举到x / pj时，其就会被筛掉
-> 
->具体实现：时间复杂度O(n)
-> 
+>
+> * 任意一个合数x，一定会被其最小质因数筛掉。	
+>
+>   对于一个合数x，假设pj是x的最小质因子，当i枚举到x / pj时，其就会被筛掉
+>
+> 具体实现：时间复杂度O(n)
+>
 > ```C++
 > //线性筛法，时间复杂度O(n)
 > void get_primes(int n) {
@@ -183,7 +183,7 @@
 >     }
 > }
 > ```
-> 
+>
 > 
 
 

@@ -102,12 +102,11 @@
 > 按顺序枚举每条边 a<-w->b		//时间复杂度O(m)
 >     if a, b不连通		//并查集应用，近乎O(1)
 >         将该边加入连通块边集合	
-> 
 > ```
->
-> 具体实现：O(mlogm)	并查集	只需存储每条边
->
-> ```Java
+> 
+>具体实现：O(mlogm)	并查集	只需存储每条边
+> 
+>```Java
 > static int N = 100010, M = 2*N, INF = 0x3f3f3f3f;
 > 
 > static int n, m;
@@ -115,25 +114,25 @@
 > static int[] p = new int[N];
 > 
 > static int find(int x) {
->        if (x != p[x]) p[x] = find(p[x]);
+>     if (x != p[x]) p[x] = find(p[x]);
 >        return p[x];
 >    }
->     
->    static int kruskal() {
+>    
+>     static int kruskal() {
 >        Arrays.sort(edges, 0, m, (o1, o2) -> o1.w-o2.w);
 >    
 >        int res = 0, cnt = 0;
 >        for (int i=0; i<m; i++) {
 >            int a = edges[i].a, b = edges[i].b, w = edges[i].w;
-> 
->            if (find(a) != find(b)) {
+>    
+>         if (find(a) != find(b)) {
 >                res += w;
 >                cnt++;
 >                p[find(a)] = find(b);
 >            }
 >        }
-> 
->        return cnt < n-1? INF: res;
+>    
+>     return cnt < n-1? INF: res;
 >    }
 >    
 >    public static void main(String[] args) throws Exception {
@@ -151,20 +150,20 @@
 >    
 >        int t = kruskal();
 >        out.println((t == INF? "impossible": t));
-> 
->        out.flush();
+>    
+>     out.flush();
 >    }
->     
->    static class Edge {
+>    
+>     static class Edge {
 >        int a, b, w;
->     
->        Edge(int aa, int bb, int ww) {
+>    
+>         Edge(int aa, int bb, int ww) {
 >            a = aa; b = bb; w = ww;
 >        }
 >    }
 >    ```
->     
 >    
+>     
 
 
 

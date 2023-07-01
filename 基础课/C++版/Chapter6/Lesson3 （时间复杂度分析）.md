@@ -2,7 +2,7 @@
 
 > **根据数据范围反推题目时间复杂度**
 >
-> ![image-20210909193323137](C:\Users\JeffCheng\AppData\Roaming\Typora\typora-user-images\image-20210909193323137.png)
+> ![](img3//时间复杂度.png)
 
 
 

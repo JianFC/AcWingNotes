@@ -43,15 +43,15 @@
 > int main(void) {
 >     int m;
 >     scanf("%d", &m);
->     
+> 
 >     init();
->     
+> 
 >     while (m--) {
 >         int k, x;
 >         char op;
 >         // scanf("%c", &op);
 >         cin >> op;
->         
+> 
 >         if (op == 'H') {
 >             scanf("%d", &x);
 >             add_to_head(x);
@@ -66,9 +66,9 @@
 >             add(k-1, x);
 >         }
 >     }
->     
+> 
 >     for (int i=head; i!=-1; i=ne[i]) printf("%d ", e[i]);
->     
+> 
 >     return 0;
 > }
 > ```
@@ -78,7 +78,8 @@
 > 双链表：优化某些特定问题
 >
 > * 在单链表基础上增加指向前一个结点的指针
-> * l[N], r[N]
+>   * l[N], r[N]
+>
 > * 不定义头结点与尾结点，0：head     1：tail
 >
 > ```C++
@@ -114,14 +115,14 @@
 > int main(void) {
 >     int m;
 >     scanf("%d", &m);
->     
+> 
 >     init();
->     
+> 
 >     while (m--) {
 >         int k, x;
 >         string op;
 >         cin >> op;
->         
+> 
 >         if (op == "L") {
 >             scanf("%d", &x);
 >             add(0, x);
@@ -143,9 +144,9 @@
 >             add(k+1, x);
 >         }
 >     }
->     
+> 
 >     for (int i=r[0]; i!=1; i=r[i]) printf("%d ", e[i]);
->     
+> 
 >     return 0;
 > }
 > ```

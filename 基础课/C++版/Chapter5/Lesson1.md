@@ -177,7 +177,7 @@
 >
 > 所以				**f[i, j] = Max( f[i-1, j], f[i, j-v[i]]+w[i] )**
 >
-> 对比01背包	**f[i, j] = Max( f[i-1, j], f[i-1, j-v[i]]+w[i] )**
+> 对比01背包	 **f[i, j] = Max( f[i-1, j], f[i-1, j-v[i]]+w[i] )**
 >
 > ```C++
 > #include <iostream>
