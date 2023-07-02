@@ -11,30 +11,30 @@
 > * ```Java
 >   static List<Integer> add(List<Integer> A, List<Integer> B) {
 >       List<Integer> res = new ArrayList<Integer>();
->       
+>         
 >       for (int i=0, t=0; i < A.size() || i < B.size() || t>0; i++) {
 >           if (i < A.size()) t += A.get(i);
 >           if (i < B.size()) t += B.get(i);
 >           res.add(t % 10);
 >           t /= 10;
 >       }
->       
+>         
 >       return res;
 >   }
->       
+>         
 >   public static void main(String[] args) throws Exception {
 >       String a = inb.readLine(), b = inb.readLine();
 >       List<Integer> A = new ArrayList<Integer>();
 >       List<Integer> B = new ArrayList<Integer>();
 >       List<Integer> C = new ArrayList<Integer>();
->       
+>         
 >       for (int i=a.length()-1; i>=0; i--) A.add(a.charAt(i)-'0');
 >       for (int i=b.length()-1; i>=0; i--) B.add(b.charAt(i)-'0');
->       
+>         
 >       C = add(A, B);
->       
+>         
 >       for (int i=C.size()-1; i>=0; i--) out.print(C.get(i));
->       
+>         
 >       out.flush();
 >   }
 >   ```
@@ -107,30 +107,30 @@
 > * ```Java
 >   static List<Integer> mul(List<Integer> A, int b) {
 >       List<Integer> res = new ArrayList<Integer>();
->       
+>         
 >       for (int i=0, t=0; i < A.size() || t > 0; i++) {
 >           if (i < A.size()) t += A.get(i)*b;
 >           res.add(t % 10);
 >           t /= 10;
 >       }
->       
+>         
 >       while (res.size() > 1 && res.get(res.size()-1) == 0) res.remove(res.size()-1);
->       
+>         
 >       return res;
 >   }
->       
+>         
 >   public static void main(String[] args) throws Exception {
 >       String a = inb.readLine(); int b = Integer.parseInt(inb.readLine());
->       
+>         
 >       List<Integer> A = new ArrayList<Integer>();
 >       List<Integer> C = new ArrayList<Integer>();
->       
+>         
 >       for (int i=a.length()-1; i>=0; i--) A.add(a.charAt(i)-'0');
->       
+>         
 >       C = mul(A, b);
->       
+>         
 >       for (int i=C.size()-1; i>=0; i--) out.print(C.get(i));
->       
+>         
 >       out.flush();
 >   }
 >   ```
@@ -144,32 +144,32 @@
 >   ```Java
 >   static List<Integer> div(List<Integer> A, int b, int[] rr) {
 >       List<Integer> res = new ArrayList<Integer>(); int r = rr[0];
->       
+>         
 >       for (int i=A.size()-1; i>=0; i--) {
 >           r = r*10+A.get(i);
 >           res.add(r / b);
 >           r = r % b;
 >       }
->       
+>         
 >       Collections.reverse(res); rr[0] = r;
 >       while (res.size() > 1 && res.get(res.size()-1) == 0) res.remove(res.size()-1);
->       
+>         
 >       return res;
 >   }
->       
+>         
 >   public static void main(String[] args) throws Exception {
 >       String a = inb.readLine(); int b = Integer.parseInt(inb.readLine()); int[] rr = {0};
->       
+>         
 >       List<Integer> A = new ArrayList<Integer>();
 >       List<Integer> C = new ArrayList<Integer>();
->       
+>         
 >       for (int i=a.length()-1; i>=0; i--) A.add(a.charAt(i)-'0');
->       
+>         
 >       C = div(A, b, rr);
->       
+>         
 >       for (int i=C.size()-1; i>=0; i--) out.print(C.get(i));
 >       out.print("\n"+rr[0]);
->       
+>         
 >       out.flush();
 >   }
 >   ```
@@ -281,9 +281,9 @@
 >
 >   * 构造原数组
 >
->   * b[n] = a[n]-a[n-1]
+>        b[n] = a[n]-a[n-1]
 >
->   * 初始假定前缀和数组a所有元素为0，通过n次插入操作进行初始化b数组
+>        初始假定前缀和数组a所有元素为0，通过n次插入操作进行初始化b数组
 >
 >   * 作用：
 >        * O（n） B->A
@@ -293,32 +293,32 @@
 >
 >   * ```Java
 >     static int N = 100010;
->           
+>             
 >     static int n, m;
 >     static int[] a = new int[N], b = new int[N];
->           
+>             
 >     static void insert(int l, int r, int c) {
 >         b[l] += c;
 >         b[r+1] -= c;
 >     }
->           
+>             
 >     public static void main(String[] args) throws Exception {
 >         ins.nextToken(); n = (int)ins.nval;
 >         ins.nextToken(); m = (int)ins.nval;
->           
+>             
 >         for (int i=1; i<=n; i++) { ins.nextToken(); a[i] = (int)ins.nval; }
->           
+>             
 >         for (int i=1; i<=n; i++) insert(i, i, a[i]);
->           
+>             
 >         while (m-- > 0) {
 >             ins.nextToken(); int l = (int)ins.nval;
 >             ins.nextToken(); int r = (int)ins.nval;
 >             ins.nextToken(); int c = (int)ins.nval;
 >             insert(l, r, c);
 >         }
->           
+>             
 >         for (int i=1; i<=n; i++) { b[i] += b[i-1]; out.print(b[i]+" "); }
->           
+>             
 >         out.flush();
 >     }
 >     ```
@@ -330,28 +330,28 @@
 > 
 >* ```Java
 >     static int N = 1010;
->          
+>              
 >     static int n, m, k;
 >     static int[][] a = new int[N][N], b = new int[N][N];
->         
+>             
 >     static void insert(int x1, int y1, int x2, int y2, int c) {
 >         b[x1][y1] += c;
 >         b[x2+1][y1] -= c;
 >         b[x1][y2+1] -= c;
 >         b[x2+1][y2+1] += c;
 >     }
->         
+>             
 >     public static void main(String[] args) throws Exception {
 >         ins.nextToken(); n = (int)ins.nval;
 >         ins.nextToken(); m = (int)ins.nval;
 >         ins.nextToken(); k = (int)ins.nval;
->          
+>              
 >         for (int i=1; i<=n; i++)
 >             for (int j=1; j<=m; j++) {
 >                 ins.nextToken(); a[i][j] = (int)ins.nval;
 >                 insert(i, j, i, j, a[i][j]);
 >             }
->          
+>              
 >         while (k-- > 0) {
 >             ins.nextToken(); int x1 = (int)ins.nval;
 >             ins.nextToken(); int y1 = (int)ins.nval;
@@ -360,14 +360,14 @@
 >             ins.nextToken(); int c = (int)ins.nval;
 >             insert(x1, y1, x2, y2, c);
 >         }
->          
+>              
 >         for (int i=1; i<=n; i++) {
 >             for (int j=1; j<=m; j++) {
 >                 b[i][j] += b[i-1][j]+b[i][j-1]-b[i-1][j-1]; out.print(b[i][j]+" ");
 >             }
 >             out.print("\n");
 >         }
->          
+>              
 >         out.flush();
 >     }
 >     ```
