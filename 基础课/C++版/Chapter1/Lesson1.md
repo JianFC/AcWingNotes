@@ -4,56 +4,77 @@
 >
 > * 快速排序
 >
+>   <img src="img1\1.png" style="zoom:50%;" />
+>
+>   <img src="img1\2.png" style="zoom: 50%;" />
+>
+>   <img src="img1\3.png" style="zoom:50%;" />
+>
 > * ```C++
 >   int n, q[N];
->       
+>         
 >   inline void quick_sort(int *q, int l, int r) {
 >       if (l >= r) return;
->           
+>         
 >       int x = q[l+r>>1], i = l - 1, j = r + 1;
 >       while (i < j) {
 >           do i++; while (q[i] < x);
 >           do j--; while (q[j] > x);
 >           if (i < j) swap(q[i], q[j]);
 >       }
->           
+>         
 >       quick_sort(q, l, j), quick_sort(q, j+1, r);
 >   }
 >   ```
 >
->   
+> 
 >
 > * 归并排序
 >
-> * ```C++
+>   ![](img1\4.png)
+>
+>   <img src="img1\5.png" style="zoom:50%;" />
+>
+>   <img src="img1\6.png" style="zoom:50%;" />
+>
+>   ```C++
 >   int n, q[N], tmp[N];
->       
+>         
 >   inline void merge_sort(int *q, int l, int r) {
 >       if (l >= r) return;
->           
+>         
 >       int mid = l + r >> 1;
 >       merge_sort(q, l, mid), merge_sort(q, mid+1, r);
->           
+>         
 >       int k = 0, i = l, j = mid+1;
 >       while (i <= mid && j <= r) {
 >           if (q[i] <= q[j]) tmp[k++] = q[i++];
 >           else tmp[k++] = q[j++];
 >       }
->           
+>         
 >       while (i <= mid) tmp[k++] = q[i++];
 >       while (j <= r) tmp[k++] = q[j++];
->           
+>         
 >       for (int i=l, j=0; i<=r; i++, j++) q[i] = tmp[j];
 >   }
 >   ```
+>   
+>   
+>
 
 
 
 > 二分
 >
+> ![](img1\8.png)
+>
 > * 有单调性一定可以二分，可二分不一定需要有单调性
 >
+>   <img src="img1\7.png" style="zoom:50%;" />
+>
 > * 二分左区间中答案
+>
+>   ![](img1\9.png)
 >
 >   ```C++
 >   while (l < r) {
@@ -69,8 +90,12 @@
 >     防止死循环
 >
 >     例如：l = r - 1，check为true时发生死循环
+>     
+>     ![](img1\11.png)
 >
 > * 二分右区间中答案
+>
+>   ![](img1\10.png)
 >
 >   ```c++
 >   while (l < r) {
@@ -83,75 +108,81 @@
 >
 > * eg
 >
+>   <img src="img1\12.png" style="zoom:50%;" />
+>
 > * ```C++
 >   #include <iostream>
->       
+>                 
 >   using namespace std;
->       
+>                 
 >   const int N = 1e5+10;
->       
+>                 
 >   int n, m;
 >   int q[N];
->       
+>                 
 >   int main(void) {
 >       scanf("%d%d", &n, &m);
->           
+>                 
 >       for (int i=0; i<n; i++) scanf("%d", &q[i]);
->           
+>                 
 >       while (m--) {
 >           int x; scanf("%d", &x);
->               
+>                 
 >           int l = 0, r = n - 1;
 >           while (l < r) {
 >               int mid = l + r >> 1;
 >               if (q[mid] >= x) r = mid;
 >               else l = mid + 1;
 >           }
->               
+>                 
 >           if (q[l] != x) cout << "-1 -1" << endl;
 >           else {
 >               cout << l << " ";
->                   
+>                 
 >               l = 0, r = n - 1;
 >               while (l < r) {
 >                   int mid = l + r + 1 >> 1;
 >                   if (q[mid] <= x) l = mid;
 >                   else r = mid - 1;
 >               }
->                   
+>                 
 >               cout << l << endl;
 >           }
 >       }
->           
+>                 
 >       return 0;
 >   }
 >   ```
 >
 > * 浮点数二分
 >
+>   <img src="img1\13.png" style="zoom:50%;" />
+>
+>   <img src="img1\14.png" style="zoom:50%;" />
+>
 > * ```C++
 >   #求数的三次方根
 >   #include <iostream>
->       
+>                 
 >   using namespace std;
->       
+>                 
 >   int main(void) {
 >       double x;
 >       scanf("%lf", &x);
->           
+>                 
 >       double l = -100, r = 100;
->           
+>                 
 >       while (r - l > 1e-8) {
 >           double mid = (l + r) / 2;
 >           if (mid * mid * mid >= x) r = mid;
 >           else l = mid;
 >       }
->           
+>                 
 >       printf("%.6lf", l);
->           
+>                 
 >       return 0;
 >   }
 >   ```
 >
->   
+> 
 
